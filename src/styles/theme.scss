@@ -1,0 +1,99 @@
+// 深色主题变量
+$bg-color-dark: #1e1e1e;
+$text-color-dark: #cccccc;
+$hover-bg-dark: #2a2d2e;
+$active-bg-dark: #37373d;
+$border-color-dark: #454545;
+$dropdown-bg-dark: #252526;
+
+// 亮色主题变量
+$bg-color-light: #f3f3f3;
+$text-color-light: #2c2c2c;
+$hover-bg-light: #e5e5e5;
+$active-bg-light: #d0d0d0;
+$border-color-light: #e0e0e0;
+$dropdown-bg-light: #ffffff;
+
+// 全局过渡时间变量
+$theme-transition-duration: 0.05s;
+$theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+:root {
+  // 默认使用深色主题
+  --bg-color: #{$bg-color-dark};
+  --text-color: #{$text-color-dark};
+  --hover-bg: #{$hover-bg-dark};
+  --active-bg: #{$active-bg-dark};
+  --border-color: #{$border-color-dark};
+  --dropdown-bg: #{$dropdown-bg-dark};
+
+  // 添加过渡效果
+  --theme-transition: #{$theme-transition-duration} #{$theme-transition-timing};
+}
+
+:root[data-theme="light"] {
+  --bg-color: #{$bg-color-light};
+  --text-color: #{$text-color-light};
+  --hover-bg: #{$hover-bg-light};
+  --active-bg: #{$active-bg-light};
+  --border-color: #{$border-color-light};
+  --dropdown-bg: #{$dropdown-bg-light};
+}
+
+// 全局过渡样式
+* {
+  transition: background-color var(--theme-transition),
+    border-color var(--theme-transition), color var(--theme-transition),
+    box-shadow var(--theme-transition);
+}
+
+// 禁用列表项的过渡效果以提高性能
+.el-table__row,
+.el-table__cell,
+.grid-item,
+.folder-tree-item {
+  transition: none !important;
+}
+
+// 仅在hover时添加快速过渡效果
+.el-table__row:hover,
+.grid-item:hover,
+.folder-tree-item:hover {
+  transition: background-color 0.15s ease !important;
+}
+
+// 应用主体样式
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+// 优化特定元素的过渡效果
+.el-button,
+.el-input__wrapper,
+.el-select__wrapper,
+.el-dropdown,
+.el-menu,
+.el-dialog,
+.el-card {
+  transition: all 0.15s ease !important;
+}
+
+// 禁用某些元素的过渡效果以避免闪烁
+.el-loading-mask,
+.el-message,
+.el-notification,
+.el-loading-spinner,
+.el-table,
+.grid-view {
+  transition: none !important;
+}
+
+// 优化滚动条过渡
+::-webkit-scrollbar-track {
+  transition: background-color var(--theme-transition);
+}
+
+::-webkit-scrollbar-thumb {
+  transition: background-color var(--theme-transition);
+}
